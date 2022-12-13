@@ -1,27 +1,28 @@
 import { AxiosResponse } from "axios"
-import { baseInstance } from "./axios-instance/baseInstanceApi"
+import { axiosInstance } from "./axios-instance/axiosInstance"
 
 export const authApi = {
   register(regData: AuthRequestType) {
-    return baseInstance.post<AuthRequestType, AxiosResponse<AuthResponseType>>(`${Endpoints.register}`, regData)
+    return axiosInstance.post<AuthRequestType, AxiosResponse<AuthResponseType>>(`${Endpoints.register}`, regData)
   },
   login(loginData: AuthRequestType) {
-    return baseInstance.post<AuthRequestType, AxiosResponse<AuthResponseType>>(`${Endpoints.login}`, loginData)
+    return axiosInstance.post<AuthRequestType, AxiosResponse<AuthResponseType>>(`${Endpoints.login}`, loginData)
   },
   logout() {
-    return baseInstance.post(`${Endpoints.logout}`)
+    return axiosInstance.post(`${Endpoints.logout}`)
   },
 }
+
 enum Endpoints {
   register = "/api/registration",
   login = "/api/login",
   logout = "/api/logout",
 }
+export type Role = "admin" | "user"
 export type AuthRequestType = {
   email: string
   password: string
 }
-export type Role = "admin" | "user"
 export type User = {
   id: string
   email: string
