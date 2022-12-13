@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/recommendations-app/static/css/main.1ef3a49a.css",
+    "main.js": "/recommendations-app/static/js/main.ef327f83.js",
+    "static/js/787.eb440c39.chunk.js": "/recommendations-app/static/js/787.eb440c39.chunk.js",
+    "index.html": "/recommendations-app/index.html",
+    "main.1ef3a49a.css.map": "/recommendations-app/static/css/main.1ef3a49a.css.map",
+    "main.ef327f83.js.map": "/recommendations-app/static/js/main.ef327f83.js.map",
+    "787.eb440c39.chunk.js.map": "/recommendations-app/static/js/787.eb440c39.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ef3a49a.css",
+    "static/js/main.ef327f83.js"
+  ]
+}
