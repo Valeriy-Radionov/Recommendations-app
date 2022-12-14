@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios"
 import { axiosInstance } from "./axios-instance/axiosInstance"
+import { User } from "./usersApi"
 
 export const authApi = {
   register(regData: AuthRequestType) {
@@ -18,17 +19,12 @@ enum Endpoints {
   login = "/api/login",
   logout = "/api/logout",
 }
-export type Role = "admin" | "user"
+
 export type AuthRequestType = {
   email: string
   password: string
 }
-export type User = {
-  id: string
-  email: string
-  isActivated: boolean
-  role: Role
-}
+
 export type AuthResponseType = {
   accessToken: string
   refreshToken: string
