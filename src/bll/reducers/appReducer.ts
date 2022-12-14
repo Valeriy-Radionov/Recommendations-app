@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed"
 
@@ -18,10 +18,10 @@ const slice = createSlice({
   name: "app",
   initialState: initialState,
   reducers: {
-    setAppStatusAC(state, action: PayloadAction<{ status: RequestStatusType }>) {
+    setAppStatus(state, action: PayloadAction<{ status: RequestStatusType }>) {
       state.status = action.payload.status
     },
-    setAppErrorAC(state, action: PayloadAction<{ error: string }>) {
+    setAppError(state, action: PayloadAction<{ error: string }>) {
       state.error = action.payload.error
     },
     setAppInitializedAC(state, action: PayloadAction<{ isInitialized: boolean }>) {
@@ -31,3 +31,6 @@ const slice = createSlice({
 })
 
 export const appReducer = slice.reducer
+export const setAppStatus = slice.actions.setAppStatus
+export const setAppError = slice.actions.setAppError
+export const setAppInitializedAC = slice.actions.setAppInitializedAC
