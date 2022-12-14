@@ -1,12 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import thunkMiddleware from "redux-thunk"
 import { appReducer } from "../reducers/appReducer"
+import { authReducer } from "../reducers/authReducer"
 
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
 
 const rootReducer = combineReducers({
   app: appReducer,
+  user: authReducer,
 })
 
 export const store = configureStore({
