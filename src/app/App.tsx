@@ -1,11 +1,15 @@
+import { ThemeProvider } from "styled-components"
 import { Routs } from "../common/routes/Routs"
+import { GlobalStyle } from "../common/styles/global-styles/GlobalStyle"
+import { lightTheme } from "../common/styles/theme/baseTheme"
 import "./App.css"
 
 const App = () => {
   return (
-    <div className="App">
+    <ThemeProvider theme={lightTheme}>
       <Routs />
-    </div>
+      <GlobalStyle />
+    </ThemeProvider>
   )
 }
 

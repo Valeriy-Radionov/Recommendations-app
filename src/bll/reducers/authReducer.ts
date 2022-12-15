@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { authApi, AuthRequestType, AuthResponseType } from "../../api/authApi"
 import { User } from "../../api/usersApi"
+import { handleServerNetworkError } from "../../common/utils/axios-error-utils/axiosErrors"
 import { setAppStatus } from "./appReducer"
 
 export type UserDataType = {
@@ -54,6 +55,7 @@ export const loginTC = createAsyncThunk("auth/login", async (payload: AuthReques
     }
     thunkApi.dispatch(setAppStatus({ status: "succeeded" }))
   } catch (e) {
+    handleServerNetworkError(e, thunkApi.dispatch)
     thunkApi.dispatch(setAppStatus({ status: "failed" }))
   }
 })
@@ -68,6 +70,7 @@ export const registrationTC = createAsyncThunk("auth/registration", async (paylo
       thunkApi.dispatch(setAppStatus({ status: "succeeded" }))
     }
   } catch (e) {
+    handleServerNetworkError(e, thunkApi.dispatch)
     thunkApi.dispatch(setAppStatus({ status: "failed" }))
   }
 })
@@ -83,6 +86,7 @@ export const logoutTC = createAsyncThunk("auth/logout", async (payload: AuthRequ
       thunkApi.dispatch(setAppStatus({ status: "succeeded" }))
     }
   } catch (e) {
+    handleServerNetworkError(e, thunkApi.dispatch)
     thunkApi.dispatch(setAppStatus({ status: "failed" }))
   }
 })
