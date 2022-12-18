@@ -1,6 +1,5 @@
-import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { authApi, AuthRequestType, AuthResponseType } from "../../api/authApi"
-import { User } from "../../api/usersApi"
 import { handleServerNetworkError } from "../../common/utils/axios-error-utils/axiosErrors"
 import { setAppStatus } from "./appReducer"
 

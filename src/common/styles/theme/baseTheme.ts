@@ -10,7 +10,7 @@ export const baseTheme: ThemeStyle = {
     accentColor: "#ffcc00",
     successColor: "#46d246",
     accessoryColor: "#8c1aff",
-    hoverBackground: "linear-gradient(to top left, #ff99ff 0%, #9933ff 100%)",
+    hoverBackground: "linear-gradient(45deg, #ff9ff 30%, #993ff 90%)",
   },
   fontFamily: {
     base: "Source Sans Pro Light",

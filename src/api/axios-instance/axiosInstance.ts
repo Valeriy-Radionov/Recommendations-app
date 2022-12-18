@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NODE_ENV === "development" ? process.env.LOCAL_SERVER_URL : process.env.PROD_SERVER_URL,
+  baseURL: process.env.NODE_ENV === "development" ? "https://recomendations-back.vercel.app" : "https://recomendations-back.vercel.app",
   withCredentials: true,
 })
 

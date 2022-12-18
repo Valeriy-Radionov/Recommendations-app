@@ -8,7 +8,7 @@ export type RootState = ReturnType<typeof store.getState>
 
 const rootReducer = combineReducers({
   app: appReducer,
-  user: authReducer,
+  auth: authReducer,
 })
 
 export const store = configureStore({

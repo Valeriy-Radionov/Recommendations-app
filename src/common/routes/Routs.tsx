@@ -15,6 +15,7 @@ export const Routs = () => {
   return (
     <Routes>
       <Route path={AppRoutes.defPath} element={<Login />} />
+      <Route path={AppRoutes.login} element={<Login />} />
       <Route path={AppRoutes.registr} element={<Registration />} />
       <Route path={AppRoutes.error} element={<ErrorPage />} />
     </Routes>
