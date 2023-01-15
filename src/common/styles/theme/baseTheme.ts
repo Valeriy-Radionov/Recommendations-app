@@ -13,8 +13,8 @@ export const baseTheme: ThemeStyle = {
     hoverBackground: "linear-gradient(45deg, #ff9ff 30%, #993ff 90%)",
   },
   fontFamily: {
-    base: "Source Sans Pro Light",
-    large: "Fyodor Bold",
+    base: "Source Sans Pro",
+    large: "Mukta Malar",
   },
   fontWeight: {
     normal: 400,

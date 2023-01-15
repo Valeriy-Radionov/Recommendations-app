@@ -6,16 +6,14 @@ import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Unstable_Grid2"
-import { useFormik } from "formik"
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom"
 import styled from "styled-components"
-import { loginTC, registrationTC } from "../../../../bll/reducers/authReducer"
 import { CommonButton } from "../../../../common/components/CommonButton"
 import { NavigateButton } from "../../../../common/components/NaviganeBtn"
-import { useAppDispatch, useAppSelector } from "../../../../common/hooks/appHooks"
+import { useAppSelector } from "../../../../common/hooks/appHooks"
 import { AppRoutes } from "../../../../common/routes/Routs"
-import { validatorEmail, validatorPassword } from "../../../../common/utils/validators/formikValidators"
+import { useCustomFormik } from "../../../hooks/useCustomFormik"
 
 export type FormikType = {
   email?: string
@@ -23,49 +21,28 @@ export type FormikType = {
 }
 export type CommonAuthFormType = {
   formTitle: string
-  idicatorForm: "login" | "register"
+  indicatorForm: "login" | "register"
   routToPage: AppRoutes
   navLinkName: string
   routAuthForm: AppRoutes
   submitBtnname: string
 }
 
-export const AuthForm: React.FC<CommonAuthFormType> = ({ idicatorForm, formTitle, routToPage, navLinkName, submitBtnname, routAuthForm }) => {
+export const AuthForm: React.FC<CommonAuthFormType> = ({ indicatorForm: idicatorForm, formTitle, routToPage, navLinkName, submitBtnname, routAuthForm }) => {
   const handleClickShowPassword = () => setShowPassword((show) => !show)
-  const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
+  const formik = useCustomFormik(idicatorForm)
+  const errorEmail = formik.touched.email && formik.errors.email ? "error" : "success"
+  const errorPassword = formik.touched.password && formik.errors.password ? "error" : "success"
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validate: (values) => {
-      const errors: FormikType = {}
-      validatorEmail(values, errors)
-      validatorPassword(values, errors)
-      return errors
-    },
-    onSubmit: (values) => {
-      const value = {
-        email: values.email,
-        password: values.password,
-      }
-      idicatorForm === "login" && dispatch(loginTC(value))
-      idicatorForm === "register" && dispatch(registrationTC(value))
-      formik.resetForm()
-    },
-  })
   if (isLoggedIn) {
     return <Navigate key={"auth-form-navigate"} to={routToPage} />
   }
-  const errorEmail = formik.touched.email && formik.errors.email ? "error" : "success"
-  const errorPassword = formik.touched.password && formik.errors.password ? "error" : "success"
   return (
     <Wrapper>
       <Container>
@@ -80,11 +57,11 @@ export const AuthForm: React.FC<CommonAuthFormType> = ({ idicatorForm, formTitle
             }}
           >
             <Title>{formTitle}</Title>
-            <FormTextField id="email-form" type={"email"} errorform={errorEmail} label={"Email"} {...formik.getFieldProps("email")} />
+            <FormTextField id="email-form" type={"email"} errorform={errorEmail} autoComplete="off" label={"Email"} {...formik.getFieldProps("email")} />
             <FormTextField
               id="password-form"
+              autoComplete="off"
               errorform={errorPassword}
-              autoComplete="new-password"
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
